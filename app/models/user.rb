@@ -9,5 +9,6 @@ class User < ApplicationRecord
   has_one :chef
   has_one_attached :photo
   has_one :chef, dependent: :destroy
+  has_one_attached :photo
   validates :first_name, :last_name, :phone_number, :address, :postcode, presence: :true
 end

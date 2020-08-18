@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   end
 
   def index
+    @chefs = User.where(is_a_chef: true)
   end
 
   def edit
@@ -19,4 +20,12 @@ class UsersController < ApplicationController
 
   def destroy
   end
+
+  private
+  def user_params
+    params.require(:cocktail).permit(:first_name, :last_name, :address, :postcode, :email, :password, :phone_number)
+  end
+
 end
+
+
