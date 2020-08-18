@@ -17,6 +17,11 @@
     <%= f.input :password_confirmation,
                 required: false,
                 input_html: { autocomplete: "new-password" } %>
+                    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.input :address %>
+    <%= f.input :postcode %>
+    <%= f.input :phone_number %>
     <%= f.input :current_password,
                 hint: "we need your current password to confirm your changes",
                 required: true,
