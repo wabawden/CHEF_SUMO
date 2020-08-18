@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many :bookings
   has_many :reviews, through: :bookings
   has_many :messages
+  has_one :chef
+  has_one_attached :photo
   has_one :chef, dependent: :destroy
   validates :first_name, :last_name, :phone_number, :address, :postcode, presence: :true
 end

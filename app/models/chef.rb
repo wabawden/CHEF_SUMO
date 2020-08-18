@@ -4,4 +4,6 @@ class Chef < ApplicationRecord
     has_many :bookings
     has_many :reviews, through: :bookings
     validates :description, :cuisine, :location_range, :price, :chef_postcode, presence: :true
+    has_one_attached :photo
+
 end
