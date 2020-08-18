@@ -1,29 +1,9 @@
 Rails.application.routes.draw do
-  get 'reviews/new'
-  get 'reviews/create'
-  get 'bookings/index'
-  get 'bookings/show'
-  get 'bookings/new'
-  get 'bookings/create'
-  get 'bookings/update'
-  get 'bookings/edit'
-  get 'bookings/destroy'
-  get 'messages/show'
-  get 'chefs/index'
-  get 'chefs/show'
-  get 'chefs/new'
-  get 'chefs/create'
-  get 'chefs/update'
-  get 'chefs/edit'
-  get 'chefs/destroy'
-  get 'users/create'
-  get 'users/new'
-  get 'users/show'
-  get 'users/index'
-  get 'users/edit'
-  get 'users/update'
-  get 'users/destroy'
-  devise_for :users
   root to: 'pages#home'
+  resources :bookings, except: [:index, :new]
+  resources :chefs
+  resources :reviews, only: [:create, :destroy]
+  # get 'messages/show'
+  devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
