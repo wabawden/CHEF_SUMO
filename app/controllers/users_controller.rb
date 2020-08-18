@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:cocktail).permit(:first_name, :last_name, :address, :postcode, :email, :password, :phone_number)
+    params.require(:cocktail).permit(:first_name, :last_name, :address, :postcode, :email, :password, :phone_number, :photo)
   end
 
 end
