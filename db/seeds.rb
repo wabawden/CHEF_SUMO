@@ -37,6 +37,7 @@ User.where(is_a_chef: true).each do |user|
        cuisine: Faker::Restaurant.type,
        location_range: [5, 10, 20, 30, 50].sample,
        price: [5, 10, 20, 30, 50].sample,
+       rating: [1, 2, 3, 4, 5].sample,
        chef_postcode: Faker::Address.postcode
    )
     chef.user = user

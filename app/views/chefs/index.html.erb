@@ -1,8 +1,29 @@
-<ul>	
-  <% @chefs.each do |chef| %>	
-    <li><%= link_to "#{chef.user.first_name} #{chef.user.last_name}", chef_path(chef) %></li>	
-    <p> Cuisine |  <%= chef.cuisine %> <br>	
-    Price per head | <%= chef.price %>	
-    </p>	
-  <% end %>	
-</ul>
+<div class="jumbotron">
+  <h1 class="display-4">Our Chefs</h1>
+  <p class="lead">The best chefs in the world - in your kitchen.</p>
+</div>
+<div class="container">
+    <div class="cards pt-3">
+        <% @chefs.each do |chef| %>	
+            <div class="card-trip">
+            <%=  cl_image_tag chef.photos[0] %>
+            <div class="card-trip-infos">
+                <div>
+                <h2><%= link_to "#{chef.user.first_name} #{chef.user.last_name}", chef_path(chef) %></h2>
+                <p> Cuisine |  <%= chef.cuisine %> <br>	
+                    Rating | <%= chef.rating %>	
+                </p>	
+                </div>
+                <h2 class="card-trip-pricing">£ <%=chef.price%> per head</h2>
+                <% if chef.user.photo.attached? %>
+                    <div class="card-trip-user avatar-bordered">
+                    <%=  cl_image_tag chef.user.photo.key, :width=>40 %>
+                    </div>
+                <% else %>
+                    <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+                <% end %>
+            </div>
+            </div>
+        <% end %>	
+    </div>
+</div>
