@@ -1,21 +1,22 @@
-<h1>Chefs#show</h1>
-<p>Find me in app/views/chefs/show.html.erb</p>
+<div class="container">
+  <h1>Chefs Profile Page</h1>
+  <h2> <%= @chef.user.first_name %> <%= @chef.user.last_name %> </h2>
+  <h3>Chef Skillz Summary</h3>
+  <p> <%= @chef.description %> </p>
+  <!-- avatar of chef -->
+  <!-- image of food-->
+  <!-- description  -->
+  <h3>Cuisine</h3>
+  <p> <%= @chef.cuisine %></p>
+  <!-- price   -->
+  <h3>Price for Hire</h3>
+  <p><%= @chef.price %></p>
+   <!-- reviews   -->
+  <!--book me button  -->
 
-<h3>Chef Skillz Summary</h3>
-<p> <%= @chef.description %> </p>
-<!-- avatar of chef -->
-<!-- image of food-->
-<!-- description  -->
-<!-- price   -->
-<h3>Price for Hire</h3>
-<p><%= @chef.price %></p>
- <!-- reviews   -->
-<!--book me button  -->
-
-<%= simple_form_for @booking do |f|%>
-  <%= f.input :date %>
-  <%= f.hidden_field :price, value: @chef.price %>
-  <%= f.hidden_field :chef_id, value: @chef.id %>
-  <%= f.submit %>
-<% end %>
-
+  <%= simple_form_for @booking do |f|%>
+    <%= f.input :date %>
+    <%= f.hidden_field :price, value: @chef.price %>
+    <%= f.hidden_field :chef_id, value: @chef.id %>
+    <%= f.submit %>
+  <% end %></div>
