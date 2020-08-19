@@ -7,6 +7,12 @@
 <p></p>
 <h2>You are
 <% if current_user.is_a_chef  %>
+
+<h3>Your Bookings</h3>
+
+<%= b.date.strftime("%F")%> 
+
+
 <%= "a chef" %>
 <% else %>
 <%= "not a chef" %>
