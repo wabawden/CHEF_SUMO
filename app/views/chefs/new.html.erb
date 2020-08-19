@@ -6,6 +6,6 @@
   <%= f.input :chef_postcode %>
   <%= f.input :price %>
   <%= f.input :location_range %>
-  <%= f.input :photo, as: :file %>
+  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
   <%= f.button :submit %>
 <% end %>
