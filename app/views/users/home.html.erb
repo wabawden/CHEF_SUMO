@@ -1,36 +1,40 @@
-<h1>Profile</h1>
 
-<h1>You are 
+<h1>
+
 <%= current_user.first_name %> 
 <%= current_user.last_name %> 
 </h1>
 <p></p>
-<h2>You are
+<h3>Your Bookings:</h3><p></p>
+<div class="d-flex flex-wrap">
 <% if current_user.is_a_chef  %>
 
-<h3>Your Bookings</h3>
 
-<%= b.date.strftime("%F")%> 
-
-
-<%= "a chef" %>
-<% else %>
-<%= "not a chef" %>
-<% end %>
-<p></p>
-<h3>Bookings as a chef: <%= @chef_bookings.count %></h3>
-<ul>
 <% @chef_bookings.each do |b| %>
-<li><%= b.user.first_name%> <%= b.user.last_name%> <%= b.date%></li>
+<h4><%= b.date.strftime("%F") %> - <%= b.user.first_name%> <%= b.user.last_name%></h4>
+
 <% end %>
-</ul>
-<p></p>
-<h3>Bookings as a user: <%= @bookings.count %></h3>
-<ul>
+
+<% else %>
+
+
+
+
 <% @bookings.each do |b| %>
-<li><%= b..chef.user.first_name%> <%= b.chef.user.last_name%> <%= b.date%></li>
+<div class="card-trip">
+  <%= cl_image_tag b.chef.user.photo.key %>
+  <div class="card-trip-infos">
+    <div>
+      <h2><%= b.chef.user.first_name %> <%= b.chef.user.last_name %></h2>
+      <p><%= b.chef.description %> <%= b.date.strftime("%F") %></p>
+    </div>
+    <h2 class="card-trip-pricing">£<%= b.chef.price %></h2>
+    <%= cl_image_tag current_user.photo.key, class: "card-trip-user avatar-bordered" %>
+  </div>
+</div>
+
 <% end %>
 
-
-</ul>
+<% end %>
+</div>
 
