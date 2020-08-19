@@ -22,18 +22,27 @@
 
 <% @bookings.each do |b| %>
 <div class="card-trip">
-  <% if b.chef.user.photo.present? %>
-  <%= cl_image_tag b.chef.user.photo.key %>
+  <h2 class="py-1"><%= b.date.strftime("%F") %></h2>
+  <% if b.chef.photos.present? %>
+  <%= cl_image_tag b.chef.photos[0].key %>
   <% else %>
   <%= image_tag "https://images.unsplash.com/photo-1537815749002-de6a533c64db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1445&q=80", alt: "cute dog" %>
   <% end %>
+
   <div class="card-trip-infos">
     <div>
+      
       <h2><%= b.chef.user.first_name %> <%= b.chef.user.last_name %></h2>
-      <p><%= b.chef.description %> <%= b.date.strftime("%F") %></p>
+      <p><%= b.chef.description %></p>
     </div>
+
     <h2 class="card-trip-pricing">£<%= b.chef.price %></h2>
-    <%= cl_image_tag current_user.photo.key, class: "card-trip-user avatar-bordered" %>
+    <% if b.chef.user.photo.present? %>
+    <%= cl_image_tag b.chef.user.photo.key, class: "card-trip-user avatar-bordered" %>
+    <% else %>
+    <img src="https://images.unsplash.com/photo-1537815749002-de6a533c64db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1445&q=80" class="card-trip-user avatar-bordered" alt="cute dog">
+    <% end %>
+    
   </div>
 </div>
 
