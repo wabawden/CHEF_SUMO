@@ -1,22 +1,31 @@
 <div class="container">
-  <h1>Chefs Profile Page</h1>
   <h2> <%= @chef.user.first_name %> <%= @chef.user.last_name %> </h2>
-  <h3>Chef Skillz Summary</h3>
+  <%= image_tag "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=953&q=80", alt: "alttext" %>
+  <%= image_tag "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=953&q=80", alt: "alttext" %>
+  <%= image_tag "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=953&q=80", alt: "alttext" %>
+
+  <h3>Chef Summary</h3>
   <p> <%= @chef.description %> </p>
   <!-- avatar of chef -->
   <!-- image of food-->
   <!-- description  -->
-  <h3>Cuisine</h3>
+  <h4>Cuisine</h4>
   <p> <%= @chef.cuisine %></p>
   <!-- price   -->
-  <h3>Price for Hire</h3>
-  <p><%= @chef.price %></p>
    <!-- reviews   -->
   <!--book me button  -->
-
-  <%= simple_form_for @booking do |f|%>
-    <%= f.input :date %>
-    <%= f.hidden_field :price, value: @chef.price %>
-    <%= f.hidden_field :chef_id, value: @chef.id %>
-    <%= f.submit %>
-  <% end %></div>
+  <div class="container">
+   <div class="row justify-content-end">
+      <div class = "card p-3">
+        <h4><strong> £<%= @chef.price %></strong> / per person</h4>
+        <p> - - - - - - - - - - - -  - - -</p>
+        <%= simple_form_for @booking do |f|%>
+          <%= f.input :date %>
+          <%= f.hidden_field :price, value: @chef.price %>
+          <%= f.hidden_field :chef_id, value: @chef.id %>
+          <%= f.submit %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
