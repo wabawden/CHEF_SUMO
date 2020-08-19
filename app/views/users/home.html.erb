@@ -1,0 +1,30 @@
+<h1>Profile</h1>
+
+<h1>You are 
+<%= current_user.first_name %> 
+<%= current_user.last_name %> 
+</h1>
+<p></p>
+<h2>You are
+<% if current_user.is_a_chef  %>
+<%= "a chef" %>
+<% else %>
+<%= "not a chef" %>
+<% end %>
+<p></p>
+<h3>Bookings as a chef: <%= @chef_bookings.count %></h3>
+<ul>
+<% @chef_bookings.each do |b| %>
+<li><%= b.user.first_name%> <%= b.user.last_name%> <%= b.date%></li>
+<% end %>
+</ul>
+<p></p>
+<h3>Bookings as a user: <%= @bookings.count %></h3>
+<ul>
+<% @bookings.each do |b| %>
+<li><%= b.user.first_name%> <%= b.user.last_name%> <%= b.date%></li>
+<% end %>
+
+
+</ul>
+

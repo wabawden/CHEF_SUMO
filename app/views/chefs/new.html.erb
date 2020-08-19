@@ -1,2 +1,11 @@
 <h1>Chefs#new</h1>
-<p>Find me in app/views/chefs/new.html.erb</p>
+
+<%= simple_form_for @chef do |f| %>
+  <%= f.input :cuisine %>
+  <%= f.input :description, as: :text %>
+  <%= f.input :chef_postcode %>
+  <%= f.input :price %>
+  <%= f.input :location_range %>
+  <%= f.input :photo, as: :file %>
+  <%= f.button :submit %>
+<% end %>

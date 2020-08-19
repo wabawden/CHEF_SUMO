@@ -6,6 +6,12 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
+  end
+
+  def home
+    @bookings = Booking.where(user: current_user)
+    @chef_bookings = Booking.where(chef: current_user.chef)
   end
 
   def index
