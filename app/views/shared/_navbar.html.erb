@@ -18,13 +18,14 @@
         <% end %>
       
         <li class="nav-item active">
-          <%= link_to "Home", chefs_path, class: "nav-link" %>
+          <%= link_to "View Chefs", chefs_path, class: "nav-link" %>
         </li>
         <li class="nav-item dropdown">
           <% if current_user.photo.attached?%>
-          <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false, crop: :fill %>
+          <%= cl_image_tag current_user.photo.key, :gravity=>"faces", :width=>42, :height=>42, :crop=>"fill", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false, crop: :fill %>
           <% else %>
-            <img class="avatar dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="/root/code/wabawden/CHEF_SUMO/app/assets/images/Sumo.png" />
+            <%= image_tag 'Sumo', class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <%# <img class="avatar dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="/root/code/wabawden/CHEF_SUMO/app/assets/images/Sumo.png" /> %>
            <% end %> 
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %>
