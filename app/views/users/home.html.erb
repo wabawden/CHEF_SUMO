@@ -7,6 +7,12 @@
 <p></p>
 <h2>You are
 <% if current_user.is_a_chef  %>
+
+<h3>Your Bookings</h3>
+
+<%= b.date.strftime("%F")%> 
+
+
 <%= "a chef" %>
 <% else %>
 <%= "not a chef" %>
@@ -22,7 +28,7 @@
 <h3>Bookings as a user: <%= @bookings.count %></h3>
 <ul>
 <% @bookings.each do |b| %>
-<li><%= b.user.first_name%> <%= b.user.last_name%> <%= b.date%></li>
+<li><%= b..chef.user.first_name%> <%= b.chef.user.last_name%> <%= b.date%></li>
 <% end %>
 
 
