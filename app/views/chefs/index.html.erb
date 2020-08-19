@@ -2,6 +2,11 @@
 <p>Find me in app/views/chefs/index.html.erb</p>
 
 
-<% @chefs.each do |chef| %>
-<p> <%= chef.user.first_name  %> </p>
-<% end %>
+<ul>
+  <% @chefs.each do |chef| %>
+    <li><%= link_to "#{chef.user.first_name} #{chef.user.last_name}", chef_path(chef) %></li>
+    <p> Cuisine |  <%= chef.cuisine %> <br>
+    Price per head | <%= chef.price %>
+    </p>
+  <% end %>
+</ul>
