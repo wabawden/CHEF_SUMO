@@ -1,9 +1,8 @@
-<div class="container">
-<h1>Chefs</h1>
-</div>
-<div class="container">
-    <% @chefs.each do |chef| %>
-    <> <%= chef.user.first_name  %> </p>
-    <% end %>
-</div>
-
+<ul>	
+  <% @chefs.each do |chef| %>	
+    <li><%= link_to "#{chef.user.first_name} #{chef.user.last_name}", chef_path(chef) %></li>	
+    <p> Cuisine |  <%= chef.cuisine %> <br>	
+    Price per head | <%= chef.price %>	
+    </p>	
+  <% end %>	
+</ul>
