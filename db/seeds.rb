@@ -14,6 +14,7 @@ puts "Deleting existing users and bookings....."
 Chef.destroy_all
 User.destroy_all
 Booking.destroy_all
+Review.delete_all
 
 
 api_call = Unsplash::Photo.search('headshot', page = 1, per_page = 30)

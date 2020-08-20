@@ -14,7 +14,7 @@
     </div>
   <div class="mt-3">
   <% if @chef.photos[0].present? %>
-      <%=  cl_image_tag chef.photos[0].key %>
+      <%=  cl_image_tag @chef.photos[0].key %>
   <% else %>
       <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg", class="avatar" />
   <% end %>
