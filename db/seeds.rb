@@ -27,7 +27,7 @@ api_call_page2.each do |photo|
 end
 puts "creating 60 users"
 counter1 = 0
-60.times do
+10.times do
   user = User.new(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
@@ -37,7 +37,7 @@ counter1 = 0
     is_a_chef: [true].sample,
     email: Faker::Internet.free_email,
     password: "123456",
-    
+
     )
     file1 = URI.open(headshots[counter1])
     counter1 += 1
