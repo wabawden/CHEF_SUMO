@@ -6,35 +6,47 @@
   <% end %> -- Location <%= @chef.chef_postcode %></p>
 
 
+
     <div class="main-image-container">
       <div class="left-main-image-container">
-       <%= image_tag "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=953&q=80", alt: "alttext", class: 'image-main-large'%>
+       <% if @chef.photos[0].present? %>
+        <%= cl_image_tag @chef.photos[0].key, alt: "alttext", class: 'image-main-large'%>
+       <% else %>
+        <%= image_tag "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=953&q=80", alt: "alttext", class: 'image-main-large'%>
+       <% end %>
       </div>
       <div class="right-main-image-container">
-       <%= image_tag "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", alt: "alttext", class: 'image-main-small'%>
+        <% if @chef.photos[1].present? %>
+          <%= cl_image_tag @chef.photos[1].key, alt: "alttext", class: 'image-main-large'%>
+        <% else %>
+          <%= image_tag "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", alt: "alttext", class: 'image-main-small'%>
+        <% end %>
        <%= image_tag "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", alt: "alttext", class: 'image-main-small'%>
       </div>
     </div>
-  <div class="mt-3">
-  <% if @chef.photos[0].present? %>
-      <%=  cl_image_tag @chef.photos[0].key %>
-  <% else %>
-      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg", class="avatar" />
-  <% end %>
-    <h3>Chef Summary</h3>
-    <p> <%= @chef.description %> </p>
-  </div>
-  <p> ---------------------------------</p>
-  <h3>Cuisine</h3>
-  <p> <%= @chef.cuisine %></p>
 
-<a class="btn btn-primary p-2"href="/chefs">Return to 'Browse Chefs'</a>
+
   <!-- price   -->
    <!-- reviews   -->
   <!--book me button  -->
   <div class="container">
-   <div class="row justify-content-end">
-      <div class = "card shadow p-3 mb-5 bg-white rounded price-box sticky-top">
+   <div class="row justify-content-end mt-3">
+    <div class="col-6">
+      <div class="mt-3">
+        <% if @chef.user.photo.attached? %>
+            <%=  cl_image_tag @chef.user.photo.key, class: "avatar mb-2" %>
+        <% else %>
+            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg", class="avatar" />
+        <% end %>
+        <h3 class="mt-3">Chef Summary</h3>
+        <p> <%= @chef.description %> </p>
+      </div>
+      <p> ---------------------------------</p>
+      <h3>Cuisine</h3>
+      <p> <%= @chef.cuisine %></p>
+      <a class="btn btn-primary p-2"href="/chefs">Return to 'Browse Chefs'</a>
+    </div>
+    <div class = "card shadow p-3 mb-5 bg-white rounded price-box col-6">
         <h4><strong> £</strong><strong class="price-per-person"><%= @chef.price %></strong> / per guest</h4>
         <p> - - - - - - - - - - - -  - - -</p>
         <%= simple_form_for @booking do |f|%>
@@ -62,8 +74,6 @@
           <%= f.button :submit, class: "btn-primary" %>
         <% end %>
         <div id="total-price"></div>
-
-      </div>
     </div>
   </div>
 
@@ -78,10 +88,10 @@
       <p><strong>- <%= b.user.first_name %> <%= b.user.last_name %></strong></p>
       </div>
     <% end %>
-    
-  
+
+
   <% end %>
-  
+
 
   <div class="featured-chef-container">
   </div>
