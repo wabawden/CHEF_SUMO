@@ -8,6 +8,19 @@ class ChefsController < ApplicationController
   def show
     @chef = Chef.find(params[:id])
     @booking = Booking.new
+    counter = 0
+    reviews = 0
+    @chef.bookings.each do |b|
+      if b.review
+      counter += b.review.rating.to_i
+      reviews += 1
+      end    
+    end
+    if counter > 0
+      @rating = counter/reviews
+      
+    else @rating = 0
+    end
   end
 
   def new
