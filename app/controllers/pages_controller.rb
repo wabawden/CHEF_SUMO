@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
   def home
-    @chef = Chef.all.sample
+    @chefs = Chef.all.sample(3)
   end
 end
