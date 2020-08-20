@@ -8,6 +8,7 @@
     <div class="cards pt-3">
         
         <% @chefs.each do |chef| %>	
+
             <div class="card-trip-index">
                 <% if chef.photos[0].present? %>
                     <%=  cl_image_tag chef.photos[0].key %>
@@ -33,15 +34,16 @@
                     <% end %>
                 </div>
             </div>
+
         <% end %>	
     </div>
     <div class="d-flex justify-content-center mt-4">
         <div class="d-flex flex-column">
         <div class="p-2 text-center">
-            <%= page_entries_info @chefs %>
+            <%# <%= page_entries_info @chefs %>
         </div>
         <div class="p-2">
-            <%= paginate @chefs %>
+            <%# <%= paginate @chefs %>
         </div>
         
         </div>

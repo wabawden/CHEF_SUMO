@@ -2,7 +2,18 @@ class ChefsController < ApplicationController
   def index
     @chefscount = Chef.all
     # @chefs = Chef.order(:name).page params[:page]
-    @chefs = Chef.order(created_at: :desc).page(params[:page])
+    
+    if params[:query].present?
+      sql_query = " \
+        chefs.description ILIKE :query \
+        OR chefs.cuisine ILIKE :query \
+        OR users.first_name ILIKE :query \
+        OR users.last_name ILIKE :query \
+      "
+      @chefs = Chef.joins(:user).where(sql_query, query: "%#{params[:query]}%")
+    else
+      @chefs = Chef.order(created_at: :desc).page(params[:page])
+    end
   end
 
   def show
