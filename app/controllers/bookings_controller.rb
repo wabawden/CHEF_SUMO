@@ -18,7 +18,7 @@ class BookingsController < ApplicationController
     @chef = Chef.find(booking_params[:chef_id])
 
     if @booking.save
-      flash[:notice] = "Congratulations on your booking with #{@chef.user.first_name}"
+      sweetalert_success('Your resource is created and available.', 'Successfully created', persistent: 'Awesome!')
       redirect_to users_home_path
     else
       redirect_to chef_path(@chef)
