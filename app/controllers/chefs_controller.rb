@@ -17,10 +17,12 @@ class ChefsController < ApplicationController
       end    
     end
     if counter > 0
-      @rating = counter/reviews
+      rating = counter/reviews
       
-    else @rating = 0
+    else rating = 0
     end
+    @chef.rating = rating
+    @chef.save
   end
 
   def new

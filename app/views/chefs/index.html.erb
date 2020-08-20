@@ -17,8 +17,12 @@
                 <div class="card-trip-infos">
                     <div>
                     <h2><%= link_to "#{chef.user.first_name} #{chef.user.last_name}", chef_path(chef) %></h2>
-                    <p> Cuisine |  <%= chef.cuisine %> <br>	
-                        ⭐ <%= chef.rating %>	
+                    <p> Cuisine |  <%= chef.cuisine %> <br>
+                        <% if chef.rating %>
+                            <% chef.rating.times do  %>
+                                <span>★</span>
+                            <% end %>
+                        <% end %>
                     </p>	
                     </div>
                     <h2 class="card-trip-pricing">£ <%=chef.price%></h2>
