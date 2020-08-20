@@ -1,5 +1,6 @@
 <div class="container">
   <h2 class= "mt-3"> <%= @chef.user.first_name %> <%= @chef.user.last_name %> </h2>
+  <p> ★ <%= @chef.rating %> -- Location <%= @chef.chef_postcode %></p>
 
     <div class="main-image-container">
       <div class="left-main-image-container">
@@ -21,7 +22,7 @@
   <h3>Cuisine</h3>
   <p> <%= @chef.cuisine %></p>
 
-
+<a class="btn btn-primary p-2"href="/chefs">Return to 'Browse Chefs'</a>
   <!-- price   -->
    <!-- reviews   -->
   <!--book me button  -->
@@ -34,7 +35,7 @@
           <%= f.input :date %>
           <%= f.hidden_field :price, value: @chef.price %>
           <%= f.hidden_field :chef_id, value: @chef.id %>
-          <%= f.submit %>
+          <%= f.button :submit, class: "btn-primary" %>
         <% end %>
       </div>
     </div>
