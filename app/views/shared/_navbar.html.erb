@@ -1,6 +1,6 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <%= link_to root_path, class: "navbar-brand" do %>
-    <%= image_tag "Sumo.png" %>
+  <%= link_to root_path, class: "" do %>
+    <%= image_tag "Sumo2.jpg", size: "105x30"%>
     <% end %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,7 +13,7 @@
       <% if user_signed_in? %>
         <% unless current_user.is_a_chef == true %>
         <li class="nav-item active">
-        <%= link_to "Sign up as a chef", "/chefs/new", class: "nav-link btn btn-primary" %>
+        <%= link_to "Sign up as a chef", "/chefs/new", class: "btn btn-primary " %>
         </li>
         <% end %>
       
@@ -36,7 +36,7 @@
         </li>
       <% else %>
         <li class="nav-item">
-          <%= link_to "Sign-up", new_user_registration_path, class: "nav-link btn btn-primary" %>
+          <%= link_to "Sign-up", new_user_registration_path, class: "btn btn-primary" %>
         </li>
         <li class="nav-item">
           <%= link_to "Login", new_user_session_path, class: "nav-link" %>

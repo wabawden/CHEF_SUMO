@@ -7,38 +7,56 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 require "open-uri"
+require "json"
 
 
 puts "Deleting existing users and bookings....."
-Booking.destroy_all
+Chef.destroy_all
 User.destroy_all
+Booking.destroy_all
 
-puts "creating 20 users"
-# counter1 = 0
-# images1 = Unsplash::Photo.search('headshot', 1, 20)
-20.times do
+
+api_call = Unsplash::Photo.search('headshot', page = 1, per_page = 30)
+api_call_page2 = Unsplash::Photo.search('headshot', page = 2, per_page = 30)
+headshots =[]
+api_call.each do |photo|
+  headshots << photo.urls.regular
+end
+api_call_page2.each do |photo|
+  headshots << photo.urls.regular
+end
+puts "creating 60 users"
+counter1 = 0
+60.times do
   user = User.new(
-      first_name: Faker::Name.first_name,
-      last_name: Faker::Name.last_name,
-      phone_number: Faker::PhoneNumber.phone_number,
-      address: Faker::Address.street_address,
-      postcode: Faker::Address.postcode,
-      is_a_chef: [true, false].sample,
-      email: Faker::Internet.free_email,
-      password: "123456",
-
-  )
-#   file1 = URI.open(images[counter])
-#   counter1 += 1
-#   user.photo.attach(io: file1, filename: 'nes.png', content_type: 'image/png')
-  user.save!
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    phone_number: Faker::PhoneNumber.phone_number,
+    address: Faker::Address.street_address,
+    postcode: Faker::Address.postcode,
+    is_a_chef: [true].sample,
+    email: Faker::Internet.free_email,
+    password: "123456",
+    
+    )
+    file1 = URI.open(headshots[counter1])
+    counter1 += 1
+    user.photo.attach(io: file1, filename: 'nes.png', content_type: 'image/png')
+    user.save!
   puts "saved #{user.first_name}"
 end
 
-
+api_call_dinner = Unsplash::Photo.search('dinner', page = 1, per_page = 30)
+api_call_dinner_page_2 = Unsplash::Photo.search('dinner', page = 2, per_page = 30)
+food =[]
+api_call_dinner.each do |photo|
+  food << photo.urls.regular
+end
+api_call_dinner_page_2.each do |photo|
+  food << photo.urls.regular
+end
 puts "assigning chef attributes to chefs"
-# counter = 0
-# images = Unsplash::Photo.search('food', 1, 25)
+counter = 0
 User.where(is_a_chef: true).each do |user|
    chef = Chef.create(
        description: Faker::Hipster.sentences.sample,
@@ -49,10 +67,10 @@ User.where(is_a_chef: true).each do |user|
        chef_postcode: Faker::Address.postcode
        )
     chef.user = user
-    
-    # file = URI.open(images[counter])
-    # counter += 1
-    # chef.photos.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+
+    file = URI.open(food[counter])
+    counter += 1
+    chef.photos.attach(io: file, filename: 'nes.png', content_type: 'image/png')
     chef.save!
     puts "saved chef attributes for #{chef.user.first_name}"
 
