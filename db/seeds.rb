@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
+require "open-uri"
 
 
 puts "Deleting existing users and bookings....."
@@ -13,6 +14,8 @@ Booking.destroy_all
 User.destroy_all
 
 puts "creating 20 users"
+# counter1 = 0
+# images1 = Unsplash::Photo.search('headshot', 1, 20)
 20.times do
   user = User.new(
       first_name: Faker::Name.first_name,
@@ -25,12 +28,17 @@ puts "creating 20 users"
       password: "123456",
 
   )
+#   file1 = URI.open(images[counter])
+#   counter1 += 1
+#   user.photo.attach(io: file1, filename: 'nes.png', content_type: 'image/png')
   user.save!
   puts "saved #{user.first_name}"
 end
 
 
 puts "assigning chef attributes to chefs"
+# counter = 0
+# images = Unsplash::Photo.search('food', 1, 25)
 User.where(is_a_chef: true).each do |user|
    chef = Chef.create(
        description: Faker::Hipster.sentences.sample,
@@ -39,8 +47,12 @@ User.where(is_a_chef: true).each do |user|
        price: [5, 10, 20, 30, 50].sample,
        rating: [1, 2, 3, 4, 5].sample,
        chef_postcode: Faker::Address.postcode
-   )
+       )
     chef.user = user
+    
+    # file = URI.open(images[counter])
+    # counter += 1
+    # chef.photos.attach(io: file, filename: 'nes.png', content_type: 'image/png')
     chef.save!
     puts "saved chef attributes for #{chef.user.first_name}"
 
