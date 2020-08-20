@@ -1,34 +1,41 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.pexels.com/photos/3298637/pexels-photo-3298637.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500);">
-  <div class="container">
+<div class="home-main-container">
+  <div class="home-banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.pexels.com/photos/3298637/pexels-photo-3298637.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500);">
+<!--     <h1>
+      <span id="banner-typed-text"></span>
+    </h1> -->
     <h1>Chef Sumo <strong>brings top Chefs</strong> to <strong>your house</strong>!</h1>
     <p>the UK's leading private Chef service.</p>
     <a><%= link_to "Browse Chefs", chefs_path(@chef), class:"btn btn-secondary" %></a>
   </div>
+  <div class="right-container">
+    <%= image_tag "https://images.unsplash.com/photo-1428895009712-de9e58a18409?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80", class: 'home-image-main-small' %>
+    <%= image_tag "https://images.unsplash.com/photo-1494859802809-d069c3b71a8a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60", class: 'home-image-main-small' %>
+    <%= image_tag "https://images.unsplash.com/photo-1486485764572-92b96f21882a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60", class: 'home-image-main-small' %>
+    <%= image_tag "https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60", class: 'home-image-main-small' %>
+  </div>
 </div>
 
-<div class="container">
-  <!-- Marketing messaging and featurettes
-  ================================================== -->
-  <!-- Wrap the rest of the page in another container to center all the content. -->
 
-  <div class="container marketing">
+<div class="container">
 
     <!-- Three columns of text below the carousel -->
-    <div class="row">
-      <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+    <div class="row justify-content-around" id="chef" style="margin-top: 32px;">
+      <div class="col-lg">
+        <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar-bordered", alt: "avatar-large" %>
         <h2><%= @chef.user.first_name %></h2>
-        <p><%= @chef.description %></p> %>
-        <p><%= link_to "View Chef", chef_path(@chef), class:"btn btn-secondary" %></p> %>
-      </div><!-- /.col-lg-4 --> %>
-      <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+
+        <p><%= @chef.description %></p>
+        <p><%= link_to "View Chef", chef_path(@chef), class:"btn btn-secondary" %></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg">
+        <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar-bordered", alt: "avatar-large" %>
+     
         <h2><%= @chef.user.first_name %></h2>
         <p><%= @chef.description %></p>
         <p><%= link_to "View Chef", chef_path(@chef), class:"btn btn-secondary" %></p>
       </div><!-- /.col-lg-4 -->
-      <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+      <div class="col-lg">
+        <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar-bordered", alt: "avatar-large" %>
         <h2><%= @chef.user.first_name %></h2>
         <p><%= @chef.description %></p>
         <p><%= link_to "View Chef", chef_path(@chef), class:"btn btn-secondary" %></p>
@@ -66,8 +73,8 @@
 
     <!-- /END THE FEATURETTES -->
 
-  </div><!-- /.container -->
-</div>
+<!--   </div>/.container
+ --></div>
 
   <!-- FOOTER -->
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
