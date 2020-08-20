@@ -1,5 +1,11 @@
 Unsplash.configure do |config|
-  config.application_access_key = ENV['UNSPLASH_ACCESS_KEY']
-  config.application_secret = ENV['UNSPLASH_SECRET_KEY']
-  config.utm_source = 'CHEF_SUMO'
+  config.application_access_key = "aNTUX234_zGvtRCgRxe4ouk2Xg6AsbbrQ07OiIOIQwk"
+  config.application_secret = "ZLjFoS2pDH89JnAapkHw_XCoZHrqJYz0qF80gtQjXok"
+  # config.application_redirect_uri = "https://your-application.com/oauth/callback"
+  config.utm_source = "chef_sumo"
+
+  # optional:
+  # config.logger = MyCustomLogger.new
 end
+
+#restclient get request
