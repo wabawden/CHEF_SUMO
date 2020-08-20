@@ -1,11 +1,23 @@
-<h1>Chefs#new</h1>
+<div class="container">
+  <div class="text-center my-4">
+    <h1>Sign up as chef!</h1>
+    <p>Think of the £££</p>
+  </div>
+  <div class="d-flex justify-content-center">
+    <div class="w-50">
+      <%= simple_form_for @chef do |f| %>
+        <%= f.input :cuisine %>
+        <%= f.input :description, as: :text %>
+        <%= f.input :chef_postcode %>
+        <%= f.input :price %>
+        <%= f.input :location_range %>
+        <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+        <%= f.button :submit, class: "btn btn-primary"%>
+      <% end %>
+    </div> 
+  </div>
+</div>
 
-<%= simple_form_for @chef do |f| %>
-  <%= f.input :cuisine %>
-  <%= f.input :description, as: :text %>
-  <%= f.input :chef_postcode %>
-  <%= f.input :price %>
-  <%= f.input :location_range %>
-  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-  <%= f.button :submit %>
-<% end %>
+
+
+
