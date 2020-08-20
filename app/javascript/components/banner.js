@@ -1,10 +1,10 @@
 import Typed from 'typed.js';
 
 const loadDynamicBannerText = () => {
-  new Typed('#typed3', {
-    strings: ['My strings are: <i>strings</i> with', 'My strings are: <strong>HTML</strong>', 'My strings are: Chars &times; &copy;'],
-    typeSpeed: 0,
-    backSpeed: 0,
+  new Typed('#banner-typed-text', {
+    strings: ['ChefSumo: <i>Hire a</i> Chef', 'ChefSumo: <i>Be a</i> Chef', 'ChefSumo: <i>Enjoy Great</i><strong> Food</strong>'],
+    typeSpeed: 100,
+    backSpeed: 100,
     smartBackspace: true, // this is a default
     loop: true
   });
