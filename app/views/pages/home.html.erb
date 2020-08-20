@@ -1,29 +1,27 @@
+
 <div class="home-main-container">
-  <div class="home-banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.pexels.com/photos/3298637/pexels-photo-3298637.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500);">
-    <h1>
-      <span id="banner-typed-text"></span>
-    </h1>
-    <!-- <h1>Chef Sumo <strong>brings top Chefs</strong> to <strong>your house</strong>!</h1>
-    <p>the UK's leading private Chef service.</p>
-    <a><%= link_to "Browse Chefs", chefs_path(@chef), class:"btn btn-secondary" %></a> -->
-  </div>
-  <div class="right-container">
-    <%= image_tag "https://images.unsplash.com/photo-1428895009712-de9e58a18409?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80", class: 'home-image-main-small' %>
-    <%= image_tag "https://images.unsplash.com/photo-1494859802809-d069c3b71a8a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60", class: 'home-image-main-small' %>
-    <%= image_tag "https://images.unsplash.com/photo-1486485764572-92b96f21882a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60", class: 'home-image-main-small' %>
-    <%= image_tag "https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60", class: 'home-image-main-small' %>
+  <div class="row">
+    <div class="col-8" id="left-main-container" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.pexels.com/photos/3298637/pexels-photo-3298637.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500);">
+      <h1>
+        <span id="banner-typed-text"></span>
+      </h1>
+    </div>
+    <div class="col-4" id="right-main-container">
+      <%= image_tag "https://images.unsplash.com/photo-1428895009712-de9e58a18409?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80", class: 'home-image-main-small' %>
+      <%= image_tag "https://images.unsplash.com/photo-1494859802809-d069c3b71a8a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60", class: 'home-image-main-small' %>
+      <%= image_tag "https://images.unsplash.com/photo-1486485764572-92b96f21882a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60", class: 'home-image-main-small' %>
+      <%= image_tag "https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60", class: 'home-image-main-small' %>
+    </div>
   </div>
 </div>
 
 
 <div class="container">
-
     <!-- Three columns of text below the carousel -->
     <div class="row justify-content-center flex-wrap" id="chef" style="margin-top: 32px;">
 
     <% @chefs.each do |chef| %>
       <div class="m-1 col-lg feature-chef-card justify-content-center">
-
         <% if chef.user.photo.attached? %>
           <%= cl_image_tag chef.user.photo.key, :gravity=>"faces", :crop=>"fill", class: "avatar-bordered feature-avatar m-1", alt: "avatar-large" %>
         <% else %>
@@ -31,14 +29,12 @@
         <% end %>
        <h2><%= chef.user.first_name %> <%= chef.user.last_name %></h2>
         <div class="feature-chef-description">
-          <p><%= chef.description %></p>
+          <p><%= chef.description.truncate(200) %></p>
         </div>
         <p><%= link_to "View Chef", chef_path(chef), class:"btn btn-secondary" %></p>
-
-
       </div><!-- /.col-lg-4 -->
-
-    <% end %>
+        <% end %>
+    </div>
 
 
 
