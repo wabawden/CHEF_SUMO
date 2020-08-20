@@ -1,6 +1,8 @@
 class ChefsController < ApplicationController
   def index
-    @chefs = Chef.all
+    @chefscount = Chef.all
+    # @chefs = Chef.order(:name).page params[:page]
+    @chefs = Chef.order(created_at: :desc).page(params[:page])
   end
 
   def show
