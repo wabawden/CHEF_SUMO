@@ -17,11 +17,15 @@
       </div>
       <div class="right-main-image-container">
         <% if @chef.photos[1].present? %>
-          <%= cl_image_tag @chef.photos[1].key, alt: "alttext", class: 'image-main-large'%>
+          <%= cl_image_tag @chef.photos[1].key, alt: "alttext", class: 'image-main-small'%>
         <% else %>
           <%= image_tag "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", alt: "alttext", class: 'image-main-small'%>
         <% end %>
-       <%= image_tag "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", alt: "alttext", class: 'image-main-small'%>
+        <% if @chef.photos[2].present? %>
+          <%= cl_image_tag @chef.photos[2].key, alt: "alttext", class: 'image-main-small'%>
+        <% else %>
+          <%= image_tag "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", alt: "alttext", class: 'image-main-small'%>
+        <% end %>
       </div>
     </div>
 
@@ -87,10 +91,11 @@
       <p>Rating: <%= b.review.rating %></p>
       <p><strong>- <%= b.user.first_name %> <%= b.user.last_name %></strong></p>
       </div>
+      <% end %>
+  <% else %>
+    <h3>Reviews</h3>
+    <p>There are no reviews currently for this Chef</p>
     <% end %>
-
-
-  <% end %>
 
 
   <div class="featured-chef-container">

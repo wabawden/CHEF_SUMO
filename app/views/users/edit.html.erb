@@ -1,2 +1,15 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<% if current_user.is_a_chef == false %>
+  <h1>Your details</h1>
+  <p>details here</p>
+  <p>edit details btn</p>
+
+  <h3>Reviews given</h3>
+<% else %>
+  <h1>Your details</h1>
+  <p>user details here</p>
+  <p>chef details here</p>
+  <p>view chef profile btn</p>
+  <p>edit chef details btn</p>
+  <p>Your rating</p>
+  <p>your reviews</p>
+<% end %>
