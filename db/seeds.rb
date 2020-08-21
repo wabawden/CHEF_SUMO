@@ -112,7 +112,7 @@ User.where(is_a_chef: true).each do |user|
     chef.save!
     puts "creating bookings and reviews"
     # every time a chef is created, create 5 bookings for that chef and assign to user
-    5.times do
+    8.times do
       booking = Booking.new(chef_id: chef.id, user_id: User.where.not(id: chef.user_id).sample.id, price: (100..1000).to_a.sample, date: Time.now - (500..5000000).to_a.sample)
       # edit each of those reviews for booking with content and rating
       review = Review.new(content: Faker::Quotes::Shakespeare.hamlet_quote, rating: ratings.sample)
