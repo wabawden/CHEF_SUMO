@@ -7,7 +7,7 @@
 <%= simple_form_for @review do |f| %>
   <%= f.input :content, label: 'Review' %>
   <%= f.input :rating, collection: 0..5 %>
-  <%= f.button :submit, "Submit your review", action: "/users/home", class: "btn btn-secondary" %>
+  <%= f.button :submit, "Submit your review", action: chef_path(@review.booking.chef), class: "btn btn-secondary" %>
 <% end %>
 
 </div>
