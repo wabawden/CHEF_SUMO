@@ -7,4 +7,5 @@ class Chef < ApplicationRecord
     has_many_attached :photos
     max_paginates_per 24
 
+
 end
