@@ -49,11 +49,12 @@
       <h3>Cuisine</h3>
       <p> <%= @chef.cuisine %></p>
     </div>
-    <div class = "card shadow p-3 mb-5 bg-white rounded price-box col-6">
+    <div class="col-4">
+      <div class = "card shadow p-3 mb-5 bg-white rounded price-box">
         <h4><strong> £</strong><strong class="price-per-person"><%= @chef.price %></strong> / per guest</h4>
         <p> - - - - - - - - - - - -  - - -</p>
         <%= simple_form_for @booking do |f|%>
-          <%= f.input :date %>
+          <%= f.input :date, as: :datetime, html5: true %>
         <div class="form-group">
           <label for="exampleFormControlSelect1">Number of Guests:</label>
           <select class="form-control guests" id="scripts">
@@ -71,10 +72,8 @@
             <option">12</option>
           </select>
         </div>
-
           <%= f.hidden_field :price, value: @chef.price %>
           <%= f.hidden_field :chef_id, value: @chef.id %>
-
           <%= f.button :submit, class: "d-none", id: "confirm-booking" %>
         <% end %>
         <button id="sweet-alert-demo" class="btn btn-primary">Create Booking </button>
@@ -89,23 +88,21 @@
     <h3>Reviews For <%= @chef.user.first_name %> <%= @chef.user.last_name %></h3>
     <% @chef.bookings.each do |b| %>
       <div class="review my-3 p-3">
-      <p><%= b.review.content %></p>
-      <p>Rating: <% b.review.rating.times do  %><span>★</span><% end %></p>
-      <p><strong>- <%= b.user.first_name %> <%= b.user.last_name %></strong></p>
+        <p><%= b.review.content %></p>
+        <p>Rating: <% b.review.rating.times do  %><span>★</span><% end %></p>
+        <p><strong>- <%= b.user.first_name %> <%= b.user.last_name %></strong></p>
       </div>
-      <% end %>
+    <% end %>
   <% else %>
     <h3>Reviews</h3>
     <p>There are currently no reviews for this Chef</p>
-    <% end %>
-     <a class="btn btn-primary p-2"href="/chefs">Return to 'Browse Chefs'</a>
-
- <hr class="featurette-divider">
+  <% end %>
+  <a class="btn btn-primary p-2"href="/chefs">Return to 'Browse Chefs'</a>
+  <hr class="featurette-divider">
   <div class="featured-chef-container">
     <h3>Other Chefs you may be interested in....</h3>
   <div class="row justify-content-center flex-wrap" id="chef" style="margin-top: 32px;">
-
-  <% @chefs.each do |chef| %>
+    <% @chefs.each do |chef| %>
     <div class="m-1 col-lg feature-chef-card justify-content-center">
       <% if chef.user.photo.attached? %>
         <%= cl_image_tag chef.user.photo.key, :gravity=>"faces", :crop=>"fill", class: "avatar-bordered feature-avatar m-1", alt: "avatar-large" %>
@@ -118,7 +115,7 @@
       </div>
       <p><%= link_to "View Chef", chef_path(chef), class:"btn btn-secondary" %></p>
     </div><!-- /.col-lg-4 -->
-      <% end %>
+    <% end %>
   </div>
   </div>
 </div>
