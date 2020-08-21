@@ -3,7 +3,7 @@
 
 <div class="container">
     <h2 class="mt-4">Chefs near you</h2>
-    <p><%=@chefscount.count%> results</p>
+    <p><%=@chefs.count%> results</p>
     <p><strong>💥 Your dinner is in 14 days.</strong> We're normally booked out by now</p>
     <div class="cards pt-3">
         
@@ -40,10 +40,10 @@
     <div class="d-flex justify-content-center mt-4">
         <div class="d-flex flex-column">
         <div class="p-2 text-center">
-            <%# <%= page_entries_info @chefs %>
+            <%= page_entries_info @chefs %>
         </div>
         <div class="p-2">
-            <%# <%= paginate @chefs %>
+            <%= paginate @chefs %>
         </div>
         
         </div>
