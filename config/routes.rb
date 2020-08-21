@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   resources :bookings, except: [:index, :new]
   resources :chefs
-  resources :reviews, only: [:create, :new, :destroy]
+  resources :reviews, only: [:create, :new, :destroy, :edit, :show, :update]
   # get 'messages/show'
   devise_for :users
   get 'users/home', to: 'users#home'

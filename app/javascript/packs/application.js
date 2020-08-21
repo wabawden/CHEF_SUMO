@@ -28,9 +28,29 @@ import { loadDynamicBannerText } from '../components/banner';
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
+import { priceCalculator } from "../components/price";
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
+  const price = document.getElementById('total-price');
+  if (price) {
+    priceCalculator();
+  };
   // initSelect2();
   loadDynamicBannerText();
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

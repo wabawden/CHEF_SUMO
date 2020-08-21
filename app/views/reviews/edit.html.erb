@@ -1,0 +1,13 @@
+
+<div class="container col-8 pt-3">
+
+<h2>How was your booking with 
+<%= @review.booking.chef.user.first_name %> <%= @review.booking.chef.user.last_name %>?</h2>
+
+<%= simple_form_for @review do |f| %>
+  <%= f.input :content, label: 'Review' %>
+  <%= f.input :rating, collection: 0..5 %>
+  <%= f.button :submit, "Submit your review", action: "/users/home", class: "btn btn-secondary" %>
+<% end %>
+
+</div>

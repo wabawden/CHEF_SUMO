@@ -1,10 +1,14 @@
-<div class="jumbotron" style="height: 400px;background-size: cover; background-image: url(https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");>
-  <h1 class="display-4">Our Chefs</h1>
-  <p class="lead">The best chefs in the world - in your kitchen.</p>
-</div>
+
+
+
 <div class="container">
+    <h2 class="mt-4">Chefs near you</h2>
+    <p><%=@chefscount.count%> results</p>
+    <p><strong>💥 Your dinner is in 14 days.</strong> We're normally booked out by now</p>
     <div class="cards pt-3">
+        
         <% @chefs.each do |chef| %>	
+
             <div class="card-trip-index">
                 <% if chef.photos[0].present? %>
                     <%=  cl_image_tag chef.photos[0].key %>
@@ -14,11 +18,15 @@
                 <div class="card-trip-infos">
                     <div>
                     <h2><%= link_to "#{chef.user.first_name} #{chef.user.last_name}", chef_path(chef) %></h2>
-                    <p> Cuisine |  <%= chef.cuisine %> <br>	
-                        Rating | <%= chef.rating %>	
+                    <p> Cuisine |  <%= chef.cuisine %> <br>
+                        <% if chef.rating %>
+                            <% chef.rating.times do  %>
+                                <span>★</span>
+                            <% end %>
+                        <% end %>
                     </p>	
                     </div>
-                    <h2 class="card-trip-pricing">£ <%=chef.price%> per head</h2>
+                    <h2 class="card-trip-pricing">£ <%=chef.price%></h2>
                     <% if chef.user.photo.attached? %>
                         <%=  cl_image_tag chef.user.photo.key, :gravity=>"faces", :width=>42, :height=>42, :crop=>"fill", class: "card-trip-user avatar-bordered" %>
                     <% else %>
@@ -26,6 +34,20 @@
                     <% end %>
                 </div>
             </div>
+
         <% end %>	
     </div>
+    <div class="d-flex justify-content-center mt-4">
+        <div class="d-flex flex-column">
+        <div class="p-2 text-center">
+            <%# <%= page_entries_info @chefs %>
+        </div>
+        <div class="p-2">
+            <%# <%= paginate @chefs %>
+        </div>
+        
+        </div>
+    
+    </div>
+
 </div>

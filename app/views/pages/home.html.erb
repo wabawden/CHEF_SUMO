@@ -1,46 +1,47 @@
+
 <div class="home-main-container">
-  <div class="home-banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.pexels.com/photos/3298637/pexels-photo-3298637.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500);">
-<!--     <h1>
-      <span id="banner-typed-text"></span>
-    </h1> -->
-    <h1>Chef Sumo <strong>brings top Chefs</strong> to <strong>your house</strong>!</h1>
-    <p>the UK's leading private Chef service.</p>
-    <a><%= link_to "Browse Chefs", chefs_path(@chef), class:"btn btn-secondary" %></a>
-  </div>
-  <div class="right-container">
-    <%= image_tag "https://images.unsplash.com/photo-1428895009712-de9e58a18409?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80", class: 'home-image-main-small' %>
-    <%= image_tag "https://images.unsplash.com/photo-1494859802809-d069c3b71a8a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60", class: 'home-image-main-small' %>
-    <%= image_tag "https://images.unsplash.com/photo-1486485764572-92b96f21882a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60", class: 'home-image-main-small' %>
-    <%= image_tag "https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60", class: 'home-image-main-small' %>
+  <div class="row">
+    <div class="col-8" id="left-main-container" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.pexels.com/photos/3298637/pexels-photo-3298637.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500);">
+      <h1>
+        <span style="margin-left: 16px"><strong>ChefSumo:</strong></span>
+        <span id="banner-typed-text" style="margin-left: 16px;"></span><br>
+<!--         <span><%= link_to "Browse Chefs", chefs_path, class:"btn btn-secondary" %></span>
+ -->      </h1>
+    </div>
+
+
+    <div class="col-4" id="right-main-container">
+      <%= image_tag "https://images.unsplash.com/photo-1428895009712-de9e58a18409?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80", class: 'home-image-main-small' %>
+      <%= image_tag "https://images.unsplash.com/photo-1494859802809-d069c3b71a8a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60", class: 'home-image-main-small' %>
+      <%= image_tag "https://images.unsplash.com/photo-1486485764572-92b96f21882a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60", class: 'home-image-main-small' %>
+      <%= image_tag "https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60", class: 'home-image-main-small' %>
+    </div>
   </div>
 </div>
 
 
 <div class="container">
-
     <!-- Three columns of text below the carousel -->
-    <div class="row justify-content-around" id="chef" style="margin-top: 32px;">
-      <div class="col-lg">
-        <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar-bordered", alt: "avatar-large" %>
-        <h2><%= @chef.user.first_name %></h2>
+    <div class="row justify-content-center flex-wrap" id="chef" style="margin-top: 32px;">
 
-        <p><%= @chef.description %></p>
-        <p><%= link_to "View Chef", chef_path(@chef), class:"btn btn-secondary" %></p>
+    <% @chefs.each do |chef| %>
+      <div class="m-1 col-lg feature-chef-card justify-content-center">
+        <% if chef.user.photo.attached? %>
+          <%= cl_image_tag chef.user.photo.key, :gravity=>"faces", :crop=>"fill", class: "avatar-bordered feature-avatar m-1", alt: "avatar-large" %>
+        <% else %>
+          <%= image_tag "https://cdn.shopify.com/s/files/1/0026/1740/9636/files/iStock-690837852_large.jpg?v=1543101282", class: "avatar-bordered feature-avatar m-1", alt: "avatar-large" %>
+        <% end %>
+       <h2><%= chef.user.first_name %> <%= chef.user.last_name %></h2>
+        <div class="feature-chef-description">
+          <p><%= chef.description.truncate(200) %></p>
+        </div>
+        <p><%= link_to "View Chef", chef_path(chef), class:"btn btn-secondary" %></p>
       </div><!-- /.col-lg-4 -->
-      <div class="col-lg">
-        <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar-bordered", alt: "avatar-large" %>
-     
-        <h2><%= @chef.user.first_name %></h2>
-        <p><%= @chef.description %></p>
-        <p><%= link_to "View Chef", chef_path(@chef), class:"btn btn-secondary" %></p>
-      </div><!-- /.col-lg-4 -->
-      <div class="col-lg">
-        <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar-bordered", alt: "avatar-large" %>
-        <h2><%= @chef.user.first_name %></h2>
-        <p><%= @chef.description %></p>
-        <p><%= link_to "View Chef", chef_path(@chef), class:"btn btn-secondary" %></p>
-      </div><!-- /.col-lg-4 -->
-    </div><!-- /.row -->
+        <% end %>
+    </div>
+
+
+
 
 
     <!-- START THE FEATURETTES -->
@@ -49,11 +50,11 @@
 
     <div class="row featurette">
       <div class="col-md-7">
-        <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It’ll blow your mind.</span></h2>
-        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        <h2 class="featurette-heading">Turnips, London: <span class="text-muted">‘A clever response to challenging times’ – restaurant review</span></h2>
+        <p class="lead">The pandemic has brought a silver lining to one Borough Market trader – he’s opened a restaurant</p>
       </div>
       <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"></rect><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+        <%= image_tag "https://i.guim.co.uk/img/media/5b33136f1052b9330e4a8793de99ef18f18b3678/0_17_5348_3209/master/5348.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=39dcc983c233579ea6785ea9b66117ab", class: "feature-home" %>
       </div>
     </div>
 
@@ -61,22 +62,13 @@
 
     <div class="row featurette">
       <div class="col-md-7 order-md-2">
-        <h2 class="featurette-heading">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span></h2>
-        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        <h2 class="featurette-heading">Anne-Sophie Pic <span class="text-muted">– 8 Michelin Stars</span></h2>
+        <p class="lead">Let’s hear it for the ladies! Anne-Sophie Pic is the female chef with the most Michelin stars, holding eight stars across her five restaurants. This French chef had no formal culinary training when she assumed leadership of her family’s restaurant Maison Pic after her father’s death in 1997. After earning three stars for the restaurant, Pic opened up a second restaurant, Restaurant Anne-Sophie Pic, which celebrates her family’s culinary lineage from Valence. It aims to demonstrate the inventive innovative spirit that, as the Michelin Guide itself says, “binds the history of the Pic family with that of French gastronomy.”</p>
       </div>
       <div class="col-md-5 order-md-1">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"></rect><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+        <%= image_tag "https://trulyexperiences.com/blog/wp-content/uploads/2015/03/Anne-Sophie-Pic.jpg", class: "feature-home" %>
       </div>
     </div>
 
-    <hr class="featurette-divider"> %>
-
-    <!-- /END THE FEATURETTES -->
-
-<!--   </div>/.container
- --></div>
-
-  <!-- FOOTER -->
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-      <script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.4/dist/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
- %>
+    <hr class="featurette-divider">
+</div>
