@@ -33,14 +33,14 @@
 
   <div class="container">
    <div class="row justify-content-end mt-5">
-    <div class="col-8">
+    <div class="col-8 p-0">
      <div class="d-flex justify-content-between">
        <div class="ml-0">
         <h3>Chef Summary</h3>
          <p>  <%= @chef.description.truncate(200) %> </p>
        </div>
         <% if @chef.user.photo.attached? %>
-            <%=  cl_image_tag @chef.user.photo.key, class: "avatar-large mb-2" %>
+            <%=  cl_image_tag @chef.user.photo.key, class: "avatar-large-chef mb-2" %>
         <% else %>
             <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg", class="avatar" />
         <% end %>
@@ -48,8 +48,9 @@
        <hr class="featurette-divider">
       <h3>Cuisine</h3>
       <p> <%= @chef.cuisine %></p>
+      <hr class="featurette-divider">
     </div>
-    <div class="col-4">
+    <div class="col-4 pr-0">
       <div class = "card shadow p-3 mb-5 bg-white rounded price-box">
         <h4><strong> £</strong><strong class="price-per-person"><%= @chef.price %></strong> / per guest</h4>
         <p> - - - - - - - - - - - -  - - -</p>
@@ -118,6 +119,8 @@
     <% end %>
   </div>
   </div>
+</div>
+</div>
 </div>
 
 
