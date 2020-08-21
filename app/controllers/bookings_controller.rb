@@ -18,8 +18,10 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     @chef = Chef.find(booking_params[:chef_id])
     @review = Review.new
-    @review.booking = @booking
-    @review.save
+    @booking.save!
+    @booking.review = @review
+    @review.save!
+    
     if @booking.save
       sweetalert_success('Your resource is created and available.', 'Successfully created', persistent: 'Awesome!')
       redirect_to users_home_path
@@ -27,6 +29,8 @@ class BookingsController < ApplicationController
       redirect_to chef_path(@chef)
     end
   end
+
+  
 
   def update
   end
