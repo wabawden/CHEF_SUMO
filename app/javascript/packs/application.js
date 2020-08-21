@@ -25,6 +25,8 @@ require("channels")
 // External imports
 import "bootstrap";
 import { loadDynamicBannerText } from '../components/banner';
+import { initSweetalert } from '../plugins/init_sweetalert';
+
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -36,9 +38,26 @@ document.addEventListener('turbolinks:load', () => {
   if (price) {
     priceCalculator();
   };
-  // initSelect2();
+  const banner = document.getElementById('banner-typed-text');
+  if (banner) {
   loadDynamicBannerText();
+  }
+
+  initSweetalert('#sweet-alert-demo', {
+  title: "Booking Confirmed",
+  text: "Enjoy your great night",
+  icon: "success"
+}, (value) => {
+  if (value) {
+    const link = document.querySelector('#confirm-booking');
+    console.log("Hello")
+    console.log(link)
+    link.click();
+  }
 });
+});
+
+
 
 
 

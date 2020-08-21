@@ -11,6 +11,7 @@ class BookingsController < ApplicationController
   # end
 
   def create
+
     @booking = Booking.new(booking_params)
     # date = "#{params[:booking]['date(3i)']}/#{params[:booking]['date(2i)']}/#{params[:booking]['date(1i)']}"
     # @booking.date = Date.parse(date)
