@@ -2,7 +2,6 @@ class ChefsController < ApplicationController
   def index
     @chefscount = Chef.all
     # @chefs = Chef.order(:name).page params[:page]
-
     if params[:query].present?
       sql_query = " \
         chefs.description ILIKE :query \

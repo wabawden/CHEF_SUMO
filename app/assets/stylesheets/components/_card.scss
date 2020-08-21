@@ -22,6 +22,10 @@
     opacity: .7;
     margin: 0;
   }
+  
+  .avatar-bordered {
+    object-fit: cover;
+  }
 
 
   .card-trip .card-trip-infos {
@@ -37,6 +41,7 @@
     right: 16px;
     top: -20px;
     width: 40px;
+    height: 40px;
   }
 
 
@@ -53,4 +58,12 @@
 
   .feature-chef-description {
     height: 200px;
+  }
+
+  .user-profile-card {
+    width: 100%;
+    background-color: white;
+    border-radius: 4px;
+    margin: 8px;
+    padding: 8px;
   }
