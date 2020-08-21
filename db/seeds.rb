@@ -11,10 +11,10 @@ require "json"
 
 
 puts "Deleting existing users and bookings....."
+Review.delete_all
+Booking.destroy_all
 Chef.destroy_all
 User.destroy_all
-Booking.destroy_all
-Review.delete_all
 
 
 api_call = Unsplash::Photo.search('headshot', page = 1, per_page = 30)
@@ -28,7 +28,7 @@ api_call_page2.each do |photo|
 end
 puts "creating 60 users"
 counter1 = 0
-10.times do
+50.times do
   user = User.new(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
