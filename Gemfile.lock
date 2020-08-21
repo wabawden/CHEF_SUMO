@@ -101,6 +101,7 @@ GEM
     faraday (1.0.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.13.1)
+    filterrific (5.2.1)
     font-awesome-sass (5.13.0)
       sassc (>= 1.11)
     globalid (0.4.2)
@@ -279,7 +280,6 @@ GEM
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    will_paginate (3.3.0)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.4.0)
@@ -296,6 +296,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   faker
+  filterrific
   font-awesome-sass
   jbuilder (~> 2.7)
   kaminari
@@ -317,7 +318,6 @@ DEPENDENCIES
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 4.0)
-  will_paginate (~> 3.3.0)
 
 RUBY VERSION
    ruby 2.6.6p146

@@ -10,9 +10,9 @@ class ChefsController < ApplicationController
         OR users.first_name ILIKE :query \
         OR users.last_name ILIKE :query \
       "
-      @chefs = Chef.joins(:user).where(sql_query, query: "%#{params[:query]}%")
+      @chefs = Chef.joins(:user).where(sql_query, query: "%#{params[:query]}%").order(created_at: :desc).page(params[:page])
     else
-      @chefs = Chef.order(created_at: :desc).page(params[:page])
+      @chefs = Chef.order(created_at: :desc).page(params[:page]).limit(20)
     end
   end
 
