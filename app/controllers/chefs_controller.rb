@@ -16,6 +16,7 @@ class ChefsController < ApplicationController
   end
 
   def show
+    @chefs = Chef.all.sample(3)
     @chef = Chef.find(params[:id])
     @booking = Booking.new
     counter = 0
@@ -24,11 +25,11 @@ class ChefsController < ApplicationController
       if b.review
       counter += b.review.rating.to_i
       reviews += 1
-      end    
+      end
     end
     if counter > 0
       rating = counter/reviews
-      
+
     else rating = 0
     end
     @chef.rating = rating

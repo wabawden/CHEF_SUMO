@@ -30,25 +30,24 @@
     </div>
 
 
-  <!-- price   -->
-   <!-- reviews   -->
-  <!--book me button  -->
+
   <div class="container">
-   <div class="row justify-content-end mt-3">
-    <div class="col-6">
-      <div class="mt-3">
+   <div class="row justify-content-end mt-5">
+    <div class="col-8">
+     <div class="d-flex justify-content-between">
+       <div class="ml-0">
+        <h3>Chef Summary</h3>
+         <p>  <%= @chef.description.truncate(200) %> </p>
+       </div>
         <% if @chef.user.photo.attached? %>
-            <%=  cl_image_tag @chef.user.photo.key, class: "avatar mb-2" %>
+            <%=  cl_image_tag @chef.user.photo.key, class: "avatar-large mb-2" %>
         <% else %>
             <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg", class="avatar" />
         <% end %>
-        <h3 class="mt-3">Chef Summary</h3>
-        <p> <%= @chef.description %> </p>
       </div>
-      <p> ---------------------------------</p>
+       <hr class="featurette-divider">
       <h3>Cuisine</h3>
       <p> <%= @chef.cuisine %></p>
-      <a class="btn btn-primary p-2"href="/chefs">Return to 'Browse Chefs'</a>
     </div>
     <div class = "card shadow p-3 mb-5 bg-white rounded price-box col-6">
         <h4><strong> £</strong><strong class="price-per-person"><%= @chef.price %></strong> / per guest</h4>
@@ -83,6 +82,7 @@
     </div>
   </div>
 
+ <hr class="featurette-divider">
 
   <div class="container reviews p-0">
   <% if @chef.bookings.count > 0 %>
@@ -96,10 +96,47 @@
       <% end %>
   <% else %>
     <h3>Reviews</h3>
-    <p>There are no reviews currently for this Chef</p>
+    <p>There are currently no reviews for this Chef</p>
     <% end %>
+     <a class="btn btn-primary p-2"href="/chefs">Return to 'Browse Chefs'</a>
 
-
+ <hr class="featurette-divider">
   <div class="featured-chef-container">
+    <h3>Other Chefs you may be interested in....</h3>
+  <div class="row justify-content-center flex-wrap" id="chef" style="margin-top: 32px;">
+
+  <% @chefs.each do |chef| %>
+    <div class="m-1 col-lg feature-chef-card justify-content-center">
+      <% if chef.user.photo.attached? %>
+        <%= cl_image_tag chef.user.photo.key, :gravity=>"faces", :crop=>"fill", class: "avatar-bordered feature-avatar m-1", alt: "avatar-large" %>
+      <% else %>
+        <%= image_tag "https://cdn.shopify.com/s/files/1/0026/1740/9636/files/iStock-690837852_large.jpg?v=1543101282", class: "avatar-bordered feature-avatar m-1", alt: "avatar-large" %>
+      <% end %>
+     <h2><%= chef.user.first_name %> <%= chef.user.last_name %></h2>
+      <div>
+        <p><%= chef.description.truncate(200) %></p>
+      </div>
+      <p><%= link_to "View Chef", chef_path(chef), class:"btn btn-secondary" %></p>
+    </div><!-- /.col-lg-4 -->
+      <% end %>
+  </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
