@@ -33,7 +33,7 @@ end
 puts "creating 90 users"
 counter1 = 0
 
-90.times do
+5.times do
 
   user = User.new(
     first_name: Faker::Name.first_name,
@@ -116,9 +116,9 @@ User.where(is_a_chef: true).each do |user|
       booking = Booking.new(chef_id: chef.id, user_id: User.where.not(id: chef.user_id).sample.id, price: (100..1000).to_a.sample, date: Time.now - (500..5000000).to_a.sample)
       # edit each of those reviews for booking with content and rating
       review = Review.new(content: Faker::Quotes::Shakespeare.hamlet_quote, rating: ratings.sample)
+      booking.save!
       review.booking = booking
       review.save!
-      booking.save!
     end
     
     puts "saved chef attributes for #{chef.user.first_name}"
