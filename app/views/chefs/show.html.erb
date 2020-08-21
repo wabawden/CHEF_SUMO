@@ -88,11 +88,7 @@
     <% @chef.bookings.each do |b| %>
       <div class="review my-3 p-3">
       <p><%= b.review.content %></p>
-      
-      <p>Rating:
-      <% @chef.rating.times do  %>
-      <span>★</span>
-      <% end %></p>
+      <p>Rating: <% b.review.rating.times do  %><span>★</span><% end %></p>
       <p><strong>- <%= b.user.first_name %> <%= b.user.last_name %></strong></p>
       </div>
       <% end %>
