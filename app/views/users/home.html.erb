@@ -1,109 +1,119 @@
 
 
 <div class="container">
-<h2 class="mt-4">
-
-<%= current_user.first_name %>
-<%= current_user.last_name %>
-</h2>
-
-<% if current_user.photo.attached? %>
-<%= cl_image_tag current_user.photo.key, class: "avatar-bordered feature-avatar" %>
-<% end %>
-<p class="mt-3"><i class="fas fa-pencil-alt text-muted"></i> <%= link_to "Edit your profile", edit_user_registration_path(current_user) %></p>
-<p></p>
-
-
-<div>
-<% if current_user.is_a_chef  %>
-
-
-<% @chef_bookings.each do |b| %>
-<h4><%= b.date.strftime("%F") %> - <%= b.user.first_name%> <%= b.user.last_name%></h4>
-
-<% end %>
-
-<% elsif @bookings %>
-
-
-<% if @future_bookings %>
-  
-
-<h3 class="mt-3">Upcoming Bookings</h3>
-<% @future_bookings.each do |b| %>
-<div class="card-trip m-1">
-  <h2 class="py-1"><%= b.date.strftime("%F") %></h2>
-  <% if b.chef.photos.present? %>
-  <%= cl_image_tag b.chef.photos[0].key %>
-  <% else %>
-  <%= image_tag "https://images.unsplash.com/photo-1537815749002-de6a533c64db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1445&q=80", alt: "cute dog" %>
-  <% end %>
-
-  <div class="card-trip-infos">
+  <div class="user-profile-card d-flex flex-wrap justify-content-start align-items-start">
     <div>
-      
-      <h2><%= b.chef.user.first_name %> <%= b.chef.user.last_name %></h2>
-      <p><%= b.chef.description %></p>
+      <h2>
+      <%= current_user.first_name %>
+      <%= current_user.last_name %>
+      </h2>
+
+      <% if current_user.photo.attached? %>
+      <%= cl_image_tag current_user.photo.key, class: "avatar-bordered feature-avatar" %>
+      <% end %>
+      <p class="mt-3"><i class="fas fa-pencil-alt text-muted"></i> <%= link_to "Edit your profile", edit_user_registration_path(current_user) %></p>
+      <p></p>
     </div>
+    <div class="p-5">
+    <p>Member since <%= current_user.created_at.strftime("%B %e %Y") %></p>
+    <p>Total bookings: <%= current_user.bookings.count %></p>
+    <% if current_user.bookings.count > 0 %>
+    <p>First booking: <%= current_user.bookings.first.date.strftime("%B %e %Y") %> with <%= current_user.bookings.first.chef.user.first_name %> <%= current_user.bookings.first.chef.user.last_name %></p>
 
-    <h2 class="card-trip-pricing">£<%= b.chef.price %></h2>
-    <% if b.chef.user.photo.present? %>
-    <%= cl_image_tag b.chef.user.photo.key, class: "card-trip-user avatar-bordered" %>
+    <p>Latest booking: <%= current_user.bookings.last.date.strftime("%B %e %Y") %> with <%= current_user.bookings.last.chef.user.first_name %> <%= current_user.bookings.last.chef.user.last_name %></p>
     <% else %>
-    <img src="https://images.unsplash.com/photo-1537815749002-de6a533c64db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1445&q=80" class="card-trip-user avatar-bordered" alt="cute dog">
+    <p><%= link_to "Make your first booking", chefs_path, class: "btn btn-primary" %></p>
     <% end %>
+    </div>
   </div>
-</div>
-<% end %>
 
-<% if @past_bookings %>
+  <div>
+  <% if current_user.is_a_chef  %>
 
-<h3 class="mt-3">Past Bookings</h3>
-<% @past_bookings.each do |b| %>
-<div class="card-trip m-1">
-  <h2 class="py-1"><%= b.date.strftime("%F") %></h2>
-  <% if b.chef.photos.present? %>
-  <%= cl_image_tag b.chef.photos[0].key %>
-  <% else %>
-  <%= image_tag "https://images.unsplash.com/photo-1537815749002-de6a533c64db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1445&q=80", alt: "cute dog" %>
+
+  <% @chef_bookings.each do |b| %>
+  <h4><%= b.date.strftime("%B %e %Y") %> - <%= b.user.first_name%> <%= b.user.last_name%></h4>
+
   <% end %>
 
-  <div class="card-trip-infos">
-    <div>
-      
-      <h2><%= b.chef.user.first_name %> <%= b.chef.user.last_name %></h2>
-      <p><%= b.chef.description %></p>
-    </div>
+  <% elsif @bookings %>
 
-    <h2 class="card-trip-pricing">£<%= b.chef.price %></h2>
-    <% if b.chef.user.photo.present? %>
-    <%= cl_image_tag b.chef.user.photo.key, class: "card-trip-user avatar-bordered" %>
-    <% else %>
-    <img src="https://images.unsplash.com/photo-1537815749002-de6a533c64db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1445&q=80" class="card-trip-user avatar-bordered" alt="cute dog">
-    <% end %>
-  </div>
-  
-  <% if b.review.content.blank? %>
-  <p class="text-right pr-2"><i class="fas fa-comments text-muted"></i> <%= link_to "Leave a review", edit_review_path(b.review) %></p>
+
+  <% if @future_bookings.empty? %>
+    <h3 class="mt-3">You have no upcoming bookings.</h3>
+    <p><%= link_to "View all chefs", chefs_path, class: "btn btn-primary" %></p>
   <% else %>
-  <p class="text-left pl-3"><i class="fas fa-comments"></i> Your Review:</p>
-  <p class="m-3"><%= b.review.content %></p>
-  <p class="m-3"><% b.review.rating.times do  %><span>★</span><% end %></p>
+    <h3 class="mt-3">Upcoming Bookings</h3>
+    <% @future_bookings.each do |b| %>
+    <div class="card-trip m-1">
+      <h2 class="py-1"><%= b.date.strftime("%B %e %Y") %></h2>
+      <% if b.chef.photos.present? %>
+      <%= cl_image_tag b.chef.photos[0].key %>
+      <% else %>
+      <%= image_tag "https://images.unsplash.com/photo-1537815749002-de6a533c64db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1445&q=80", alt: "cute dog" %>
+      <% end %>
+
+      <div class="card-trip-infos">
+        <div>
+          
+          <h2><%= b.chef.user.first_name %> <%= b.chef.user.last_name %></h2>
+          <p><%= b.chef.description %></p>
+        </div>
+
+        <h2 class="card-trip-pricing">£<%= b.chef.price %></h2>
+        <% if b.chef.user.photo.present? %>
+        <%= cl_image_tag b.chef.user.photo.key, class: "card-trip-user avatar-bordered" %>
+        <% else %>
+        <img src="https://images.unsplash.com/photo-1537815749002-de6a533c64db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1445&q=80" class="card-trip-user avatar-bordered" alt="cute dog">
+        <% end %>
+      </div>
+    </div>
   <% end %>
 
-</div>
+  <% unless @past_bookings.empty? %>
+    <h3 class="mt-3">Past Bookings</h3>
+    <% @past_bookings.each do |b| %>
+    <div class="card-trip m-1">
+      <h2 class="py-1"><%= b.date.strftime("%B %e %Y") %></h2>
+      <% if b.chef.photos.present? %>
+      <%= cl_image_tag b.chef.photos[0].key %>
+      <% else %>
+      <%= image_tag "https://images.unsplash.com/photo-1537815749002-de6a533c64db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1445&q=80", alt: "cute dog" %>
+      <% end %>
+
+      <div class="card-trip-infos">
+        <div>
+          
+          <h2><%= b.chef.user.first_name %> <%= b.chef.user.last_name %></h2>
+          <p><%= b.chef.description %></p>
+        </div>
+
+        <h2 class="card-trip-pricing">£<%= b.chef.price %></h2>
+        <% if b.chef.user.photo.present? %>
+        <%= cl_image_tag b.chef.user.photo.key, class: "card-trip-user avatar-bordered" %>
+        <% else %>
+        <img src="https://images.unsplash.com/photo-1537815749002-de6a533c64db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1445&q=80" class="card-trip-user avatar-bordered" alt="cute dog">
+        <% end %>
+      </div>
+      
+      <% if b.review.content.blank? %>
+      <p class="text-right pr-2"><i class="fas fa-comments text-muted"></i> <%= link_to "Leave a review", edit_review_path(b.review) %></p>
+      <% else %>
+      <p class="text-left pl-3"><i class="fas fa-comments"></i> Your Review:</p>
+      <p class="m-3"><%= b.review.content %></p>
+      <p class="m-3"><% b.review.rating.times do  %><span>★</span><% end %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% end %>
 
 
-<% end %>
-
-<% end %>
 
 
+  <% end %>
 
-
-<% end %>
-
-<% end %>
-</div>
+  <% end %>
+  </div>
 
 </div>
