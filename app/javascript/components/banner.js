@@ -2,7 +2,7 @@ import Typed from 'typed.js';
 
 const loadDynamicBannerText = () => {
   new Typed('#banner-typed-text', {
-    strings: ['ChefSumo: <i>Hire a</i> Chef', 'ChefSumo: <i>Be a</i> Chef', 'ChefSumo: <i>Enjoy Great</i><strong> Food</strong>'],
+    strings: ['<i>Hire a</i> Chef', '<i>Be a</i> Chef', '<i>Enjoy Great</i> Food'],
     typeSpeed: 100,
     backSpeed: 100,
     smartBackspace: true, // this is a default
