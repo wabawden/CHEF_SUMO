@@ -11,7 +11,12 @@ class UsersController < ApplicationController
 
   def home
     @bookings = Booking.where(user: current_user)
+    @past_bookings = @bookings.where("date < ?", DateTime.now) 
+    @future_bookings = @bookings.where("date > ?", DateTime.now) 
+
     @chef_bookings = Booking.where(chef: current_user.chef)
+    @past_chef_bookings = @chef_bookings.where("date < ?", DateTime.now) 
+    @future_chef_bookings = @chef_bookings.where("date > ?", DateTime.now) 
   end
 
   def index

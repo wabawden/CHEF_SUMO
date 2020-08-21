@@ -16,6 +16,7 @@ Booking.destroy_all
 Chef.destroy_all
 User.destroy_all
 
+
 api_call = Unsplash::Photo.search('headshot', page = 1, per_page = 30)
 api_call_page2 = Unsplash::Photo.search('headshot', page = 2, per_page = 30)
 api_call_page3 = Unsplash::Photo.search('headshot', page = 3, per_page = 30)
@@ -31,7 +32,9 @@ api_call_page3.each do |photo|
 end
 puts "creating 90 users"
 counter1 = 0
+
 1.times do
+
   user = User.new(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
