@@ -31,7 +31,7 @@ api_call_page3.each do |photo|
 end
 puts "creating 90 users"
 counter1 = 0
-90.times do
+1.times do
   user = User.new(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
@@ -96,7 +96,6 @@ User.where(is_a_chef: true).each do |user|
        cuisine: cuisines.sample,
        location_range: [5, 10, 20, 30, 50].sample,
        price: [5, 10, 20, 30, 50].sample,
-       rating: [1, 2, 3, 4, 5].sample,
        chef_postcode: Faker::Address.postcode
        )
     chef.user = user
@@ -106,7 +105,18 @@ User.where(is_a_chef: true).each do |user|
       counter += 1
     end
     chef.save!
+    puts "creating bookings and reviews"
+    # every time a chef is created, create 5 bookings for that chef and assign to user
+    5.times do
+      booking = Booking.new(chef_id: chef.id, user_id: User.all.sample, price: (100..1000).to_a.sample, date: Time.now - (500..5000000).to_a.sample)      rating = [3,4,5].sample
+      # edit each of those reviews for booking with content and rating
+      booking.review.update(content: Faker::Quotes::Shakespeare.hamlet_quote, rating: [3,4,5].sample)
+      booking.save!
+    end
+    
     puts "saved chef attributes for #{chef.user.first_name}"
 end
+
+
 
 
