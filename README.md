@@ -1,1 +1,1 @@
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
+Group Rails project using Agile and TDD principles to create an "Air-BnB-clone" with PostgreSQL, Authentication, Authorisation, AJAX and CRUD actions
